@@ -15,13 +15,13 @@ const Form = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
-    e.preventDefautl();
+    e.preventDefault();
 
-    console.log(recipeData);
+    console.log("ui dispatch ", recipeData);
     dispatch(createRecipe(recipeData));
   };
 
-  const clear = () => {};
+  const clear = (e) => {};
 
   return (
     <>
