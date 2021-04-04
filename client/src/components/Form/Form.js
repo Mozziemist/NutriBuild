@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 
 import { createRecipe } from "../../actions/recipes.js";
 
+import "./FormStyel.css";
+
 const Form = () => {
   const [recipeData, setRecipeData] = useState({
     creator: "",
@@ -24,8 +26,8 @@ const Form = () => {
   const clear = (e) => {};
 
   return (
-    <>
-      <form className="border border-dark" onSubmit={handleSubmit}>
+    <div className="d-flex justify-content-center">
+      <form className="form" onSubmit={handleSubmit}>
         <div className="form-group">
           <FileBase
             type="file"
@@ -78,7 +80,7 @@ const Form = () => {
           Clear
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

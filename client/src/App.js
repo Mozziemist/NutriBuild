@@ -3,6 +3,8 @@ import Recipes from "./components/Recipes/Recipes.js";
 import Form from "./components/Form/Form.js";
 import { useDispatch } from "react-redux";
 
+import "./AppStyle.css";
+
 import { getRecipes } from "./actions/recipes";
 
 const App = () => {
@@ -15,7 +17,7 @@ const App = () => {
   return (
     <>
       {/******** Navigation Bar **********/}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="#">
           Navbar
         </a>
@@ -91,8 +93,12 @@ const App = () => {
         </div>
       </nav>
 
+      <div className="container d-flex justify-content-center display-3 bg-dark rounded mt-5 mb-5">
+        <div className="text-white">NutriBuild</div>
+      </div>
+
       {/******** Main Section **********/}
-      <div className="container">
+      <div className="container-fluid">
         <Recipes />
         <Form />
       </div>
