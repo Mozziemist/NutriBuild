@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Recipes from "./components/Recipes/Recipes.js";
 import Form from "./components/Form/Form.js";
 import { useDispatch } from "react-redux";
@@ -9,6 +9,7 @@ import { getRecipes } from "./actions/recipes";
 
 const App = () => {
   const dispatch = useDispatch();
+  const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
     dispatch(getRecipes());
@@ -17,9 +18,9 @@ const App = () => {
   return (
     <>
       {/******** Navigation Bar **********/}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark myBorderBot">
         <a className="navbar-brand" href="#">
-          Navbar
+          NB
         </a>
         <button
           className="navbar-toggler"
@@ -93,14 +94,14 @@ const App = () => {
         </div>
       </nav>
 
-      <div className="container d-flex justify-content-center display-3 bg-dark rounded mt-5 mb-5">
+      <div className="container d-flex justify-content-center display-3 bg-dark rounded mt-5 mb-5 myBorder">
         <div className="text-white">NutriBuild</div>
       </div>
 
       {/******** Main Section **********/}
       <div className="container-fluid">
-        <Recipes />
-        <Form />
+        <Recipes setCurrentId={setCurrentId} />
+        <Form currentId={currentId} setCurrentId={setCurrentId} />
       </div>
     </>
   );

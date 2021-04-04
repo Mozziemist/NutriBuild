@@ -1,7 +1,5 @@
 .recipe {
-  width: 400px;
-  min-height: 500px;
-  margin: 5px;
+  width: 350px;
+  margin: 10px;
   background-color: aliceblue;
-  border: rgb(83, 72, 38) solid 3px;
 }

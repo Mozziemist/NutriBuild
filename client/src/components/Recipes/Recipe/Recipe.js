@@ -3,9 +3,9 @@ import moment from "moment";
 
 import "./RecipeStyle.css";
 
-const Recipe = ({ recipe }) => {
+const Recipe = ({ recipe, setCurrentId }) => {
   return (
-    <div className="card recipe">
+    <div className="card recipe myBorder">
       <img
         className="card-img-top"
         src={recipe.selectedFile}
@@ -16,6 +16,19 @@ const Recipe = ({ recipe }) => {
         <p className="card-text">{recipe.description}</p>
         <p>{recipe.creator}</p>
         <p>{moment(recipe.createdAt).fromNow()}</p>
+
+        <div className="container d-flex justify-content-end align-items-end pt-5 pr-0">
+          <button
+            type="button"
+            class="btn btn-sm btn-warning"
+            onClick={() => setCurrentId(recipe._id)}
+          >
+            Edit
+          </button>
+          <button type="button" class="btn btn-sm btn-danger ml-1">
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );

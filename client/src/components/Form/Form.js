@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FileBase from "react-file-base64";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { createRecipe } from "../../actions/recipes.js";
+import { createRecipe, updateRecipe } from "../../actions/recipes.js";
 
 import "./FormStyel.css";
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const [recipeData, setRecipeData] = useState({
     creator: "",
     recipeName: "",
@@ -14,20 +14,44 @@ const Form = () => {
     selectedFile: "",
   });
 
+  const recipe = useSelector((state) =>
+    currentId ? state.recipes.find((p) => p._id == currentId) : null
+  );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (recipe) setRecipeData(recipe);
+  }, [recipe]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("ui dispatch ", recipeData);
-    dispatch(createRecipe(recipeData));
+    // if an id was passed to form, then we are updating a recipe
+    // instead of creating a new recipe
+    if (currentId) {
+      dispatch(updateRecipe(currentId, recipeData));
+    } else {
+      dispatch(createRecipe(recipeData));
+    }
+
+    clear();
   };
 
-  const clear = (e) => {};
+  const clear = (e) => {
+    setCurrentId(null);
+
+    setRecipeData({
+      creator: "",
+      recipeName: "",
+      description: "",
+      selectedFile: "",
+    });
+  };
 
   return (
     <div className="d-flex justify-content-center">
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form myBorder" onSubmit={handleSubmit}>
+        <h2>{currentId ? "Edit" : "Create"} Recipe</h2>
         <div className="form-group">
           <FileBase
             type="file"
