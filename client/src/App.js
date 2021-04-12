@@ -12,6 +12,7 @@ const App = () => {
   const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
+    console.log("useEffect getRecipes");
     dispatch(getRecipes());
   }, [currentId, dispatch]);
 

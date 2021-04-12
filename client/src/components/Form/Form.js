@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 
-import { createRecipe, updateRecipe } from "../../actions/recipes.js";
+import {
+  createRecipe,
+  getRecipes,
+  updateRecipe,
+} from "../../actions/recipes.js";
 
 import "./FormStyel.css";
 
@@ -100,7 +104,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <button type="submit" className="btn btn-primary m-2">
           Submit
         </button>
-        <button className="btn btn-danger m-2" onClick={clear}>
+        <button type="button" className="btn btn-danger m-2" onClick={clear}>
           Clear
         </button>
       </form>
