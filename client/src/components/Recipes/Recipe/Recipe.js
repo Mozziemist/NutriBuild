@@ -1,9 +1,12 @@
 import React from "react";
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import { deleteRecipe } from "../../../actions/recipes";
 
 import "./RecipeStyle.css";
 
 const Recipe = ({ recipe, setCurrentId }) => {
+  const dispatch = useDispatch();
   return (
     <div className="card recipe myBorder">
       <img
@@ -20,12 +23,16 @@ const Recipe = ({ recipe, setCurrentId }) => {
         <div className="container d-flex justify-content-end align-items-end pt-5 pr-0">
           <button
             type="button"
-            class="btn btn-sm btn-warning"
+            className="btn btn-sm btn-warning"
             onClick={() => setCurrentId(recipe._id)}
           >
             Edit
           </button>
-          <button type="button" class="btn btn-sm btn-danger ml-1">
+          <button
+            type="button"
+            className="btn btn-sm btn-danger ml-1"
+            onClick={() => dispatch(deleteRecipe(recipe._id))}
+          >
             Delete
           </button>
         </div>

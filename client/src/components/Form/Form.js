@@ -15,7 +15,7 @@ const Form = ({ currentId, setCurrentId }) => {
   });
 
   const recipe = useSelector((state) =>
-    currentId ? state.recipes.find((p) => p._id == currentId) : null
+    currentId ? state.recipes.find((p) => p._id === currentId) : null
   );
   const dispatch = useDispatch();
 

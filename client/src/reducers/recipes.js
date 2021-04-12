@@ -6,8 +6,10 @@ export default (recipes = [], action) => {
       return [...recipes, action.payload];
     case "UPDATE":
       return recipes.map((recipe) =>
-        recipe._id == action.payload._id ? action.payload : recipe
+        recipe._id === action.payload._id ? action.payload : recipe
       );
+    case "Delete":
+      return recipes.filter((recipe) => recipe._id !== action.payload);
     default:
       return recipes;
   }

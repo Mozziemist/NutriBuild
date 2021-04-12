@@ -8,3 +8,4 @@ export const createRecipe = (newRecipe) => {
 };
 export const updateRecipe = (id, updatedRecipe) =>
   axios.patch(`${url}/${id}`, updatedRecipe);
+export const deleteRecipe = (id) => axios.delete(`${url}/${id}`);
