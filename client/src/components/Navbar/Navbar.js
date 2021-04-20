@@ -8,7 +8,9 @@ const Navbar = () => {
     <div>
       {/******** Navigation Bar **********/}
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark myBorderBot">
-        <a className="navbar-brand">NB</a>
+        <a className="navbar-brand" href="/">
+          NB
+        </a>
         <button
           className="navbar-toggler"
           type="button"
