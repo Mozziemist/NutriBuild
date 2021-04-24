@@ -2,16 +2,49 @@ import React, { useState } from "react";
 import "./AuthStyle.css";
 import { GoogleLogin } from "react-google-login";
 import { gClientId } from "../../config";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { signin, signup } from "../../actions/auth";
 
 const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+  });
 
-  const handleSubmit = () => {};
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (isSignup) {
+      dispatch(signup(formData, history));
+    } else {
+      dispatch(signin(formData, history));
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const switchMode = () => setIsSignup((previsSignup) => !previsSignup);
 
   const googleSuccess = async (res) => {
-    console.log(res);
+    const result = res?.profileObj;
+    const token = res?.tokenId;
+
+    try {
+      dispatch({ type: "AUTH", payload: { result, token } });
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const googleFailure = (error) => {
@@ -38,6 +71,7 @@ const Auth = () => {
                     type="text"
                     className="form-control"
                     name="first_name"
+                    onChange={handleChange}
                     placeholder="First Name"
                     required="required"
                   />
@@ -47,6 +81,7 @@ const Auth = () => {
                     type="text"
                     className="form-control"
                     name="last_name"
+                    onChange={handleChange}
                     placeholder="Last Name"
                     required="required"
                   />
@@ -59,6 +94,7 @@ const Auth = () => {
                 type="email"
                 className="form-control"
                 name="email"
+                onChange={handleChange}
                 placeholder="Email"
                 required="required"
               />
@@ -68,6 +104,7 @@ const Auth = () => {
                 type="password"
                 className="form-control"
                 name="password"
+                onChange={handleChange}
                 placeholder="Password"
                 required="required"
               />
@@ -79,16 +116,10 @@ const Auth = () => {
                     type="password"
                     className="form-control"
                     name="confirm_password"
+                    onChange={handleChange}
                     placeholder="Confirm Password"
                     required="required"
                   />
-                </div>
-                <div className="form-group">
-                  <label className="checkbox-inline">
-                    <input type="checkbox" required="required" /> I accept the{" "}
-                    <a href="#">Terms of Use</a> &amp;{" "}
-                    <a href="#">Privacy Policy</a>
-                  </label>
                 </div>
               </>
             )}

@@ -1,8 +1,25 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
-  const user = null;
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log("called");
+    setUser(JSON.parse(localStorage.getItem("profile")));
+    console.log(user);
+  }, [location]);
+
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+
+    history.push("/");
+    setUser(null);
+  };
 
   return (
     <div>
@@ -71,9 +88,18 @@ const Navbar = () => {
           </form>
           <div>
             {user ? (
-              <button type="button" className="btn btn-outline-warning">
-                Logout
-              </button>
+              <>
+                <span className="text-white p-2">
+                  Hello, {user.result?.name}
+                </span>
+                <button
+                  type="button"
+                  className="btn btn-outline-warning"
+                  onClick={logout}
+                >
+                  Logout
+                </button>
+              </>
             ) : (
               <Link to="/auth">
                 <button type="button" className="btn btn-outline-primary">

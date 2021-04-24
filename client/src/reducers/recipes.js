@@ -1,4 +1,4 @@
-import { FETCH_ALL, UPDATE, DELETE, CREATE } from "../actions/actionTypes.js";
+import { FETCH_ALL, UPDATE, DELETE, CREATE } from "../constants/actionTypes";
 export default (recipes = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
