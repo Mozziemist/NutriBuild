@@ -37,6 +37,7 @@ const Auth = () => {
 
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
+    console.log(res);
     const token = res?.tokenId;
 
     try {
