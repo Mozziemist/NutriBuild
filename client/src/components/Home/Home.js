@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     console.log("useEffect getRecipes");
     dispatch(getRecipes());
-  }, [currentId, dispatch]);
+  }, [dispatch]);
 
   return (
     <>

@@ -9,9 +9,7 @@ const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log("called");
     setUser(JSON.parse(localStorage.getItem("profile")));
-    console.log(user);
   }, [location]);
 
   const logout = () => {
