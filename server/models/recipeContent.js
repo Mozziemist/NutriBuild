@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const recipeSchema = mongoose.Schema({
   creator: String,
+  name: String,
   recipeName: String,
   description: String,
   selectedFile: String,

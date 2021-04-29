@@ -12,7 +12,6 @@ import "./FormStyel.css";
 
 const Form = ({ currentId, setCurrentId }) => {
   const [recipeData, setRecipeData] = useState({
-    creator: "",
     recipeName: "",
     description: "",
     selectedFile: "",
@@ -22,6 +21,8 @@ const Form = ({ currentId, setCurrentId }) => {
     currentId ? state.recipes.find((p) => p._id === currentId) : null
   );
   const dispatch = useDispatch();
+
+  const user = JSON.parse(localStorage.getItem("profile"));
 
   useEffect(() => {
     if (recipe) setRecipeData(recipe);
@@ -33,9 +34,10 @@ const Form = ({ currentId, setCurrentId }) => {
     // if an id was passed to form, then we are updating a recipe
     // instead of creating a new recipe
     if (currentId) {
+      // might need to pass in user name along update recipe if db doesn't keep original
       dispatch(updateRecipe(currentId, recipeData));
     } else {
-      dispatch(createRecipe(recipeData));
+      dispatch(createRecipe({ ...recipeData, name: user?.result?.name }));
     }
 
     clear();
@@ -45,16 +47,19 @@ const Form = ({ currentId, setCurrentId }) => {
     setCurrentId(null);
 
     setRecipeData({
-      creator: "",
       recipeName: "",
       description: "",
       selectedFile: "",
     });
   };
 
+  if (!user) {
+    return <p className="float-right">Please, sign in to create recipes.</p>;
+  }
+
   return (
     <div className="d-flex justify-content-center">
-      <form className="form myBorder" onSubmit={handleSubmit}>
+      <form className="form myBorder p-2" onSubmit={handleSubmit}>
         <h2>{currentId ? "Edit" : "Create"} Recipe</h2>
         <div className="form-group">
           <FileBase
@@ -64,18 +69,6 @@ const Form = ({ currentId, setCurrentId }) => {
               setRecipeData({ ...recipeData, selectedFile: base64 })
             }
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="creator">UserName</label>
-          <textarea
-            className="form-control"
-            id="creator"
-            rows="1"
-            value={recipeData.creator}
-            onChange={(e) =>
-              setRecipeData({ ...recipeData, creator: e.target.value })
-            }
-          ></textarea>
         </div>
         <div className="form-group">
           <label htmlFor="recipeName">Recipe Name</label>

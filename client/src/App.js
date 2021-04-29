@@ -6,6 +6,7 @@ import "./AppStyle.css";
 import Navbar from "./components/Navbar/Navbar.js";
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/" exact component={Home} />
         <Route path="/auth" exact component={Auth} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 };

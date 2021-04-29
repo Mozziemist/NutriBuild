@@ -14,7 +14,11 @@ export const getRecipes = async (req, res) => {
 export const createRecipe = async (req, res) => {
   const recipe = req.body;
 
-  const newRecipe = new RecipeContent(recipe);
+  const newRecipe = new RecipeContent({
+    ...recipe,
+    creator: req.userId,
+    createdAt: new Date().toISOString(),
+  });
 
   try {
     await newRecipe.save();
