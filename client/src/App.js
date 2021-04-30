@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar/Navbar.js";
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
 import Footer from "./components/Footer/Footer";
+import Create from "./components/Create/Create";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/auth" exact component={Auth} />
+        <Route path="/create" exact component={Create} />
       </Switch>
       <Footer />
     </BrowserRouter>

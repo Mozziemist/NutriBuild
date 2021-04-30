@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-import {
-  createRecipe,
-  getRecipes,
-  updateRecipe,
-} from "../../actions/recipes.js";
+import { createRecipe, updateRecipe } from "../../actions/recipes.js";
 
 import "./FormStyel.css";
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = ({ currentId, setRecipeId }) => {
   const [recipeData, setRecipeData] = useState({
     recipeName: "",
     description: "",
@@ -20,6 +17,8 @@ const Form = ({ currentId, setCurrentId }) => {
   const recipe = useSelector((state) =>
     currentId ? state.recipes.find((p) => p._id === currentId) : null
   );
+
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -41,10 +40,11 @@ const Form = ({ currentId, setCurrentId }) => {
     }
 
     clear();
+    history.push("/");
   };
 
   const clear = (e) => {
-    setCurrentId(null);
+    setRecipeId(null);
 
     setRecipeData({
       recipeName: "",
@@ -54,11 +54,11 @@ const Form = ({ currentId, setCurrentId }) => {
   };
 
   if (!user) {
-    return <p className="float-right">Please, sign in to create recipes.</p>;
+    history.push("/auth");
   }
 
   return (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-center m-5">
       <form className="form myBorder p-2" onSubmit={handleSubmit}>
         <h2>{currentId ? "Edit" : "Create"} Recipe</h2>
         <div className="form-group">

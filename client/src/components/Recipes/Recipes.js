@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import "./RecipesStyle.css";
 
-const Recipes = ({ setCurrentId }) => {
+const Recipes = () => {
   const recipes = useSelector((state) => state.recipes);
 
   return !recipes.length ? (
@@ -12,11 +12,11 @@ const Recipes = ({ setCurrentId }) => {
       <h1>Fetching Recipes...</h1>
     </div>
   ) : (
-    <div className="container-fluid d-flex flex-wrap recipes">
+    <div className="container-fluid d-flex flex-wrap recipes mb-5">
       {recipes.map((recipe) => {
         return (
           <div key={recipe._id}>
-            <Recipe recipe={recipe} setCurrentId={setCurrentId} />
+            <Recipe recipe={recipe} />
           </div>
         );
       })}

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Recipes from "../Recipes/Recipes.js";
-import Form from "../Form/Form.js";
 import { useDispatch } from "react-redux";
 import { getRecipes } from "../../actions/recipes";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
     console.log("useEffect getRecipes");
@@ -20,10 +19,17 @@ const Home = () => {
         <div className="text-white">NutriBuild</div>
       </div>
 
+      <div className="container d-flex justify-content-center my-5">
+        <Link to="/create">
+          <button type="button" className="btn btn-primary">
+            Create Recipe
+          </button>
+        </Link>
+      </div>
+
       {/******** Main Section **********/}
       <div className="container-fluid">
-        <Recipes setCurrentId={setCurrentId} />
-        <Form currentId={currentId} setCurrentId={setCurrentId} />
+        <Recipes />
       </div>
     </>
   );

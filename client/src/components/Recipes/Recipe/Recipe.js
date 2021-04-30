@@ -2,11 +2,13 @@ import React from "react";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { deleteRecipe } from "../../../actions/recipes";
+import { useHistory } from "react-router-dom";
 
 import "./RecipeStyle.css";
 
-const Recipe = ({ recipe, setCurrentId }) => {
+const Recipe = ({ recipe }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = JSON.parse(localStorage.getItem("profile"));
 
   return (
@@ -17,10 +19,10 @@ const Recipe = ({ recipe, setCurrentId }) => {
         alt="Card image cap"
       />
       <div className="card-body">
-        <h4 className="card-title">{recipe.recipeName}</h4>
+        <h4 className="card-title border-bottom">{recipe.recipeName}</h4>
         <p className="card-text">{recipe.description}</p>
-        <p>{recipe.name}</p>
-        <p>{moment(recipe.createdAt).fromNow()}</p>
+        <p>by {recipe.name}</p>
+        <p className="text-secondary">{moment(recipe.createdAt).fromNow()}</p>
 
         {(user?.result?.googleId === recipe?.creator ||
           user?.result?._id === recipe?.creator) && (
@@ -28,7 +30,12 @@ const Recipe = ({ recipe, setCurrentId }) => {
             <button
               type="button"
               className="btn btn-sm btn-warning"
-              onClick={() => setCurrentId(recipe._id)}
+              onClick={() =>
+                history.push({
+                  pathname: "/create",
+                  state: { recipeId: recipe._id },
+                })
+              }
             >
               Edit
             </button>
