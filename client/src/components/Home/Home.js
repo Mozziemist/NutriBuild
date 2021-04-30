@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Recipes from "../Recipes/Recipes.js";
 import { useDispatch } from "react-redux";
 import { getRecipes } from "../../actions/recipes";
-import { Link } from "react-router-dom";
+import Banner from "../Banner/Banner";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -15,17 +15,7 @@ const Home = () => {
   return (
     <>
       {/******** Banner ************/}
-      <div className="container d-flex justify-content-center display-3 bg-dark rounded mt-5 mb-5 myBorder">
-        <div className="text-white">NutriBuild</div>
-      </div>
-
-      <div className="container d-flex justify-content-center my-5">
-        <Link to="/create">
-          <button type="button" className="btn btn-primary">
-            Create Recipe
-          </button>
-        </Link>
-      </div>
+      <Banner />
 
       {/******** Main Section **********/}
       <div className="container-fluid">
