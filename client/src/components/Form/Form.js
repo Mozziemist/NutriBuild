@@ -12,7 +12,10 @@ const Form = ({ currentId, setRecipeId }) => {
     recipeName: "",
     description: "",
     selectedFile: "",
+    ingredients: [],
   });
+
+  const [ingredient, setIngredient] = useState({ name: "", amount: "" });
 
   const recipe = useSelector((state) =>
     currentId ? state.recipes.find((p) => p._id === currentId) : null
@@ -50,7 +53,18 @@ const Form = ({ currentId, setRecipeId }) => {
       recipeName: "",
       description: "",
       selectedFile: "",
+      ingredients: [],
     });
+  };
+
+  const addIngredient = () => {
+    setRecipeData({
+      ...recipeData,
+      ingredients: [...recipeData.ingredients, ingredient],
+    });
+    console.log(ingredient);
+
+    setIngredient({ name: "", amount: "" });
   };
 
   if (!user) {
@@ -61,6 +75,7 @@ const Form = ({ currentId, setRecipeId }) => {
     <div className="d-flex justify-content-center m-5">
       <form className="form myBorder p-2" onSubmit={handleSubmit}>
         <h2>{currentId ? "Edit" : "Create"} Recipe</h2>
+        {/******File Upload*********/}
         <div className="form-group">
           <FileBase
             type="file"
@@ -70,6 +85,7 @@ const Form = ({ currentId, setRecipeId }) => {
             }
           />
         </div>
+        {/******Recipe Name*********/}
         <div className="form-group">
           <label htmlFor="recipeName">Recipe Name</label>
           <textarea
@@ -77,11 +93,13 @@ const Form = ({ currentId, setRecipeId }) => {
             id="recipeName"
             rows="1"
             value={recipeData.recipeName}
+            required="required"
             onChange={(e) =>
               setRecipeData({ ...recipeData, recipeName: e.target.value })
             }
           ></textarea>
         </div>
+        {/******Description*********/}
         <div className="form-group">
           <label htmlFor="description">Description</label>
           <textarea
@@ -89,11 +107,59 @@ const Form = ({ currentId, setRecipeId }) => {
             id="description"
             rows="3"
             value={recipeData.description}
+            required="required"
             onChange={(e) =>
               setRecipeData({ ...recipeData, description: e.target.value })
             }
           ></textarea>
         </div>
+        {/******Add Ingredient*********/}
+        <label htmlFor="ingredient">Add ingredients</label>
+        <div className="form-group row">
+          <div className="col-6 pr-2 pb-2">
+            <input
+              id="ingredient"
+              type="text"
+              className="form-control"
+              name="ingredient"
+              placeholder="Ingredient"
+              value={ingredient.name}
+              onChange={(e) =>
+                setIngredient({ ...ingredient, name: e.target.value })
+              }
+            />
+          </div>
+          <div className="col-4">
+            <input
+              type="text"
+              className="form-control"
+              name="amount"
+              placeholder="Amount"
+              value={ingredient.amount}
+              onChange={(e) =>
+                setIngredient({ ...ingredient, amount: e.target.value })
+              }
+            />
+          </div>
+          <div className="col-2">
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={addIngredient}
+            >
+              +
+            </button>
+          </div>
+        </div>
+        {/******Ingredient List*********/}
+        {recipeData.ingredients.map((ing) => {
+          return (
+            <p className="bg-white w-50 m-2">
+              {ing.name}: {ing.amount}
+            </p>
+          );
+        })}
+        {/******Submit and Clear Buttons*********/}
         <button type="submit" className="btn btn-primary m-2">
           Submit
         </button>
