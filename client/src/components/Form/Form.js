@@ -13,6 +13,7 @@ const Form = ({ currentId, setRecipeId }) => {
     description: "",
     selectedFile: "",
     ingredients: [],
+    instructions: "",
   });
 
   const [ingredient, setIngredient] = useState({ name: "", amount: "" });
@@ -54,6 +55,7 @@ const Form = ({ currentId, setRecipeId }) => {
       description: "",
       selectedFile: "",
       ingredients: [],
+      instructions: "",
     });
   };
 
@@ -116,7 +118,7 @@ const Form = ({ currentId, setRecipeId }) => {
         {/******Add Ingredient*********/}
         <label htmlFor="ingredient">Add ingredients</label>
         <div className="form-group row">
-          <div className="col-6 pr-2 pb-2">
+          <div className="col-6">
             <input
               id="ingredient"
               type="text"
@@ -159,6 +161,20 @@ const Form = ({ currentId, setRecipeId }) => {
             </p>
           );
         })}
+        {/******Instructions*********/}
+        <div className="form-group">
+          <label htmlFor="instructions">Instructions:</label>
+          <textarea
+            className="form-control"
+            id="instructions"
+            rows="3"
+            value={recipeData.instructions}
+            required="required"
+            onChange={(e) =>
+              setRecipeData({ ...recipeData, instructions: e.target.value })
+            }
+          ></textarea>
+        </div>
         {/******Submit and Clear Buttons*********/}
         <button type="submit" className="btn btn-primary m-2">
           Submit

@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { deleteRecipe } from "../../../actions/recipes";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import "./RecipeStyle.css";
 
@@ -13,11 +13,14 @@ const Recipe = ({ recipe }) => {
 
   return (
     <div className="card recipe myBorder">
-      <img
-        className="card-img-top"
-        src={recipe.selectedFile}
-        alt="Card image cap"
-      />
+      <Link to={`/recipe/${recipe._id}`}>
+        <img
+          className="card-img-top"
+          src={recipe.selectedFile}
+          alt="Card image cap"
+        />
+      </Link>
+
       <div className="card-body">
         <h4 className="card-title border-bottom">{recipe.recipeName}</h4>
         <p className="card-text">{recipe.description}</p>

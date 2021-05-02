@@ -8,6 +8,7 @@ import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
 import Footer from "./components/Footer/Footer";
 import Create from "./components/Create/Create";
+import RecipeFull from "./components/Recipes/RecipeFull/RecipeFull";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/" exact component={Home} />
         <Route path="/auth" exact component={Auth} />
         <Route path="/create" exact component={Create} />
+        <Route path="/recipe/:id" exact component={RecipeFull} />
       </Switch>
       <Footer />
     </BrowserRouter>

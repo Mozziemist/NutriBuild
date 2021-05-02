@@ -20,6 +20,7 @@ const recipeSchema = mongoose.Schema({
       amount: String,
     },
   ],
+  instructions: String,
 });
 
 const recipeContent = mongoose.model("recipeContent", recipeSchema);
