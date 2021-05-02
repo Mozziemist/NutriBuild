@@ -11,6 +11,21 @@ export const getRecipes = async (req, res) => {
   }
 };
 
+export const findRecipe = async (req, res) => {
+  const { id } = req.params;
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).send("No post with that id");
+    }
+
+    const recipe = await RecipeContent.findById(id);
+
+    res.json(recipe);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 export const createRecipe = async (req, res) => {
   const recipe = req.body;
 

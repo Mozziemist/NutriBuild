@@ -12,6 +12,17 @@ export const getRecipes = () => async (dispatch) => {
   }
 };
 
+export const findRecipe = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.findRecipe(id);
+
+    //dispatch put data of recipe in store
+    dispatch({ type: CREATE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const createRecipe = (recipe) => async (dispatch) => {
   try {
     const { data } = await api.createRecipe(recipe);

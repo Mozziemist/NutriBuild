@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
-import { deleteRecipe } from "../../../actions/recipes";
+import { deleteRecipe, findRecipe } from "../../../actions/recipes";
 import "./RecipeFullStyle.css";
 
 const RecipeFull = () => {
@@ -11,9 +11,14 @@ const RecipeFull = () => {
   const recipe = useSelector((state) =>
     state.recipes.find((recipe) => recipe._id == id)
   );
+
   const user = JSON.parse(localStorage.getItem("profile"));
   const history = useHistory();
   const dispatch = useDispatch();
+
+  if (!recipe) {
+    dispatch(findRecipe(id));
+  }
 
   useEffect(() => {
     console.log(recipe);

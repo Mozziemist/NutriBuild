@@ -13,6 +13,7 @@ API.interceptors.request.use((req) => {
 });
 
 export const fetchRecipes = () => API.get("/recipes");
+export const findRecipe = (id) => API.get(`/recipes/${id}`);
 export const createRecipe = (newRecipe) => API.post("/recipes", newRecipe);
 export const updateRecipe = (id, updatedRecipe) =>
   API.patch(`/recipes/${id}`, updatedRecipe);
