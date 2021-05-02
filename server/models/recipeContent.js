@@ -14,6 +14,12 @@ const recipeSchema = mongoose.Schema({
     type: Date,
     default: new Date(),
   },
+  ingredients: [
+    {
+      name: String,
+      amount: String,
+    },
+  ],
 });
 
 const recipeContent = mongoose.model("recipeContent", recipeSchema);
