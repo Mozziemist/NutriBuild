@@ -9,7 +9,7 @@ import "./RecipeFullStyle.css";
 const RecipeFull = () => {
   const { id } = useParams();
   const recipe = useSelector((state) =>
-    state.recipes.find((recipe) => recipe._id == id)
+    state.recipes.find((recipe) => recipe._id === id)
   );
 
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -31,7 +31,7 @@ const RecipeFull = () => {
           <img
             className="card-img-top"
             src={recipe.selectedFile}
-            alt="Card image cap"
+            alt="Card cap"
           />
 
           <div className="card-body">

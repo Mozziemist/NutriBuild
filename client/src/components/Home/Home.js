@@ -8,7 +8,6 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("useEffect getRecipes");
     dispatch(getRecipes());
   }, [dispatch]);
 

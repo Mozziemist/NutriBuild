@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./AuthStyle.css";
 import { GoogleLogin } from "react-google-login";
-import { gClientId } from "../../config";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signin, signup } from "../../actions/auth";
@@ -134,7 +133,7 @@ const Auth = () => {
               </button>
               {!isSignup && (
                 <GoogleLogin
-                  clientId={gClientId}
+                  clientId={process.env.REACT_APP_G_CLIENT_ID}
                   render={(renderProps) => (
                     <button
                       type="button"

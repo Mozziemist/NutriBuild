@@ -17,7 +17,7 @@ const Recipe = ({ recipe }) => {
         <img
           className="card-img-top"
           src={recipe.selectedFile}
-          alt="Card image cap"
+          alt="Card cap"
         />
       </Link>
 
