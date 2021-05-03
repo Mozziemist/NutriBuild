@@ -19,6 +19,11 @@ const App = () => {
         <Route path="/auth" exact component={Auth} />
         <Route path="/create" exact component={Create} />
         <Route path="/recipe/:id" exact component={RecipeFull} />
+        <Route path="*">
+          <div className="container d-flex justify-content-center">
+            <h2 className="text-white my-5">404 PAGE NOT FOUND</h2>
+          </div>
+        </Route>
       </Switch>
       <Footer />
     </BrowserRouter>

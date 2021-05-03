@@ -86,7 +86,7 @@ const RecipeFull = () => {
           </div>
         </div>
       ) : (
-        <h2>not found</h2>
+        <h2 className="text-white">not found</h2>
       )}
     </div>
   );
