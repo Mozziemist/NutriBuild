@@ -35,7 +35,7 @@ const Navbar = () => {
       {/******** Navigation Bar **********/}
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark myBorderBot justify-content-between">
         <a className="navbar-brand" href="/">
-          NB
+          TB
         </a>
         <div>
           {user ? (
@@ -51,7 +51,7 @@ const Navbar = () => {
             </>
           ) : (
             <Link to="/auth">
-              <button type="button" className="btn btn-outline-primary">
+              <button type="button" className="btn btn-primary">
                 Sign in
               </button>
             </Link>

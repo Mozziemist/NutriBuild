@@ -12,7 +12,7 @@ const Recipe = ({ recipe }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
   return (
-    <div className="card recipe myBorder">
+    <div className="card bg-custom recipe myBorder">
       <Link to={`/recipe/${recipe._id}`}>
         <img
           className="card-img-top"

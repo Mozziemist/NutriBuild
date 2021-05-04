@@ -5,10 +5,10 @@ import bannerImg from "../../img/tomatoes.jpeg";
 const Banner = () => {
   return (
     <>
-      <div className="container bg-dark rounded my-5 myBorder">
+      <div className="container bg-custom rounded my-5 myBorder">
         <div className="row align-items-center">
           <div className="col text-white text-center">
-            <h2 className="display-4">NutriBuild</h2>
+            <h2 className="display-4">TasteBound</h2>
             <div className="container">
               <Link to="/create">
                 <button type="button" className="btn btn-primary m-2">

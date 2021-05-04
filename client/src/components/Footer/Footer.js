@@ -3,8 +3,11 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="fixed-bottom text-center text-light bg-dark">
-      Designed &amp; Built by Marcial Mendoza -
-      <a href="mailto: mendozam0717@gmail.com">mendozam0717@gmail.com</a>
+      Built by -
+      <a href="mailto: mendozam0717@gmail.com" title="mendozam0717@gmail.com">
+        Marcial Mendoza
+      </a>
+      .<span className="ml-2">Background pattern by Steve Schoger</span>
     </footer>
   );
 };

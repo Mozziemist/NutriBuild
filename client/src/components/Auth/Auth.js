@@ -54,7 +54,7 @@ const Auth = () => {
 
   return (
     <div className="container d-flex justify-content-center">
-      <div className="signup-form bg-dark mt-5 rounded text-light">
+      <div className="signup-form bg-dark my-5 rounded text-light">
         <div className="m-3">
           <form onSubmit={handleSubmit}>
             <h2>{isSignup ? "Sign Up" : "Sign in"}</h2>

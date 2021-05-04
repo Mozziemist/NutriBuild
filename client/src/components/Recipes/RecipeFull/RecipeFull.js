@@ -27,7 +27,7 @@ const RecipeFull = () => {
   return (
     <div className="container d-flex justify-content-center my-5">
       {recipe ? (
-        <div className="card recipeFull myBorder">
+        <div className="card bg-custom recipeFull myBorder">
           <img
             className="card-img-top"
             src={recipe.selectedFile}
