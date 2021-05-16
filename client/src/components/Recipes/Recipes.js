@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Recipe from "./Recipe/Recipe.js";
 import { useSelector } from "react-redux";
 
 import "./RecipesStyle.css";
 
-const Recipes = () => {
-  const recipes = useSelector((state) => state.recipes);
+const Recipes = ({ filter }) => {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+
+  const recipes = useSelector((state) => {
+    return filter
+      ? state.recipes.filter((recipe) => recipe.name === user.result.name)
+      : state.recipes;
+  });
 
   return !recipes.length ? (
     <div className="container d-flex justify-content-center text-white">

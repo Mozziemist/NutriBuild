@@ -18,7 +18,7 @@ const Home = () => {
 
       {/******** Main Section **********/}
       <div className="container-fluid">
-        <Recipes />
+        <Recipes filter={false} />
       </div>
     </>
   );

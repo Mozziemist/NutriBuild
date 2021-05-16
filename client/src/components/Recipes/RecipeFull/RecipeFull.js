@@ -47,7 +47,10 @@ const RecipeFull = () => {
               <div className="d-flex flex-wrap">
                 {recipe.ingredients.map((ingredient) => {
                   return (
-                    <span className="px-1 m-1 bg-success text-nowrap text-white rounded">
+                    <span
+                      className="px-1 m-1 bg-success text-nowrap text-white rounded"
+                      key={ingredient.name}
+                    >
                       {ingredient.name}: {ingredient.amount}
                     </span>
                   );

@@ -9,6 +9,7 @@ import Auth from "./components/Auth/Auth";
 import Footer from "./components/Footer/Footer";
 import Create from "./components/Create/Create";
 import RecipeFull from "./components/Recipes/RecipeFull/RecipeFull";
+import MyRecipes from "./components/MyRecipes/MyRecipes";
 
 const App = () => {
   return (
@@ -19,9 +20,10 @@ const App = () => {
         <Route path="/auth" exact component={Auth} />
         <Route path="/create" exact component={Create} />
         <Route path="/recipe/:id" exact component={RecipeFull} />
+        <Route path="/myRecipes" exact component={MyRecipes} />
         <Route path="*">
           <div className="container d-flex justify-content-center">
-            <h2 className="text-white my-5">404 PAGE NOT FOUND</h2>
+            <h2 className="text-dark bg-light my-5">404 PAGE NOT FOUND</h2>
           </div>
         </Route>
       </Switch>
